@@ -1,9 +1,9 @@
 "use client";
 import { useState, FC } from "react";
 
-interface ProfileProps {}
+interface SampleCodeProps {}
 
-const Profile: FC<ProfileProps> = () => {
+const SampleCode: FC<SampleCodeProps> = () => {
   const [data, setData] = useState<any>(null);
   const [isLoading, setLoading] = useState<boolean>(false);
 
@@ -51,4 +51,4 @@ const Profile: FC<ProfileProps> = () => {
   );
 };
 
-export default Profile;
+export default SampleCode;
