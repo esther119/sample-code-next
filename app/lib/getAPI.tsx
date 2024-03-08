@@ -1,13 +1,14 @@
 "use client";
-import { useState, useEffect, FC } from "react";
+import { useState, FC } from "react";
 
 interface ProfileProps {}
 
 const Profile: FC<ProfileProps> = () => {
   const [data, setData] = useState<any>(null);
-  const [isLoading, setLoading] = useState<boolean>(true);
+  const [isLoading, setLoading] = useState<boolean>(false);
 
-  useEffect(() => {
+  const handleClick = () => {
+    setLoading(true);
     // Define the request body if necessary. For example:
     const requestBody = {
       key: "value", // Replace with actual key-value pairs expected by your API
@@ -37,10 +38,11 @@ const Profile: FC<ProfileProps> = () => {
         setLoading(false);
         // Handle the error state appropriately
       });
-  }, []);
+  };
 
   if (isLoading) return <p>Loading...</p>;
-  if (!data) return <p>No profile data</p>;
+  if (!data) return <button onClick={handleClick}>Generate Sample Code</button>;
+  // The button is now clickable and will trigger the fetch when clicked.
 
   return (
     <div>
