@@ -21,10 +21,7 @@ interface ToolCall {
 
 interface ToolFunction {
   name: string;
-  arguments: {
-    files: File[];
-    project_type: string;
-  };
+  arguments: string;
 }
 interface ChatMessage {
   id: string;
@@ -82,9 +79,9 @@ const SampleCode: FC<SampleCodeProps> = () => {
   // The button is now clickable and will trigger the fetch when clicked.
   const output = JSON.stringify(data, null, 2);
   console.log(output);
-  const message = {
+  const myMessage: ChatMessage = {
     id: "chatcmpl-90LOnUEvuQZEarpLboB47SvEOe0J0",
-    object: "chat.completion",
+    // object: "chat.completion",
     created: 1709869285,
     model: "gpt-3.5-turbo-0125",
     choices: [
@@ -114,21 +111,25 @@ const SampleCode: FC<SampleCodeProps> = () => {
             },
           ],
         },
-        logprobs: null,
-        finish_reason: "tool_calls",
+        // logprobs: null,
+        // finish_reason: "tool_calls",
       },
     ],
-    usage: {
-      prompt_tokens: 184,
-      completion_tokens: 183,
-      total_tokens: 367,
-    },
-    system_fingerprint: "fp_4f0b692a78",
+    // usage: {
+    //   prompt_tokens: 184,
+    //   completion_tokens: 183,
+    //   total_tokens: 367,
+    // },
+    // system_fingerprint: "fp_4f0b692a78",
   };
 
-  const openCodeSandbox = async ({ message: ChatMessage }) => {
+  const openCodeSandbox = async ({ message }: { message: ChatMessage }) => {
     // Replace with the actual URL of the code sandbox
-    const { files } = message[messageId];
+    const toolCallArguments =
+      message.choices[0].message.tool_calls[0].function.arguments;
+    const parsedArguments = JSON.parse(toolCallArguments);
+    const files: File[] = parsedArguments.files;
+    console.log("files", files);
     let sandboxId: string;
     try {
       const resp = await fetch(
@@ -175,7 +176,7 @@ const SampleCode: FC<SampleCodeProps> = () => {
   };
   return (
     <div>
-      <button onClick={() => openCodeSandbox(message)}>
+      <button onClick={() => openCodeSandbox({ message: data })}>
         Open Code Sandbox
       </button>
     </div>
