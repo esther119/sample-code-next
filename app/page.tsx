@@ -8,7 +8,6 @@ export default function Home() {
   const [userInput, setUserInput] = useState<string>("");
   const callAPI = async (input: string) => {
     setUserInput(input);
-    console.log("setuserInput", userInput);
   };
 
   return (

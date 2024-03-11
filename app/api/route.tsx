@@ -83,8 +83,8 @@ export async function POST(req: Request, res: NextApiResponse) {
     res.status(405).json({ message: "Method not allowed" });
   }
 
-  console.log("Hello, world! and the userInput is", userInput);
-  console.log("user input type", typeof userInput); // This will print the type of userInput
+  // console.log("Hello, world! and the userInput is", userInput);
+  // console.log("user input type", typeof userInput); // This will print the type of userInput
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {

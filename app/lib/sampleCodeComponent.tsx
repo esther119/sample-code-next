@@ -77,7 +77,7 @@ const SampleCode: FC<SampleCodeProps> = (userInput) => {
   if (!data) return <button onClick={handleClick}>Generate Sample Code</button>;
   // The button is now clickable and will trigger the fetch when clicked.
   const output = JSON.stringify(data, null, 2);
-  console.log("openai output in the frontend", output);
+  // console.log("openai output in the frontend", output);
 
   const openCodeSandbox = async ({ message }: { message: ChatMessage }) => {
     // Replace with the actual URL of the code sandbox
@@ -124,7 +124,7 @@ const SampleCode: FC<SampleCodeProps> = (userInput) => {
       alert("Failed to open in codesandbox, missing sandbox id");
       return;
     }
-    console.log("[Codesandbox] open in new tab: ", sandboxId);
+    // console.log("[Codesandbox] open in new tab: ", sandboxId);
     window.open(
       `https://codesandbox.io/p/sandbox/${sandboxId}?file=%2FREADME.md`,
       "_blank"
