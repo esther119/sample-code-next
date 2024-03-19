@@ -108,7 +108,7 @@ export async function POST(req: Request, res: NextApiResponse) {
   });
 
   const data = await response.json();
-  console.log("data from openai", data);
+  // console.log("data from openai", data);
 
   // Assuming Response.json is your intended response handling
   return Response.json(data);
